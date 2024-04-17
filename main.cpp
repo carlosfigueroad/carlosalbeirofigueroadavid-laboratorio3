@@ -1,7 +1,7 @@
-// main.cpp: Archivo principal que incluye el menu interactivo para ejecutar ejercicios
-
 #include "punto1.h"
 #include "punto2.h"
+#include "punto3.h"
+#include "punto4.h"
 #include <iostream>
 
 int main() {
@@ -15,7 +15,8 @@ int main() {
         std::cout << "Elige una opcion:\n";
         std::cout << "1. Ejercicio 1 (CuentaCorriente)\n";
         std::cout << "2. Ejercicio 2 (ArchivoTexto)\n";
-        // ... (Otras opciones del menu)
+        std::cout << "3. Ejercicio 3 (BuscadorTexto)\n";
+        std::cout << "4. Ejercicio 4 (Codificador)\n";
         std::cout << "Ingresa tu opcion: ";
         std::cin >> opcion;
 
@@ -23,36 +24,38 @@ int main() {
             case 1:
                 // ... (Logica para Ejercicio 1)
                 break;
-            case 2: {
-                std::cout << "Has seleccionado el Ejercicio 2.\n";
-                std::cout << "1. Escribir en archivo\n";
-                std::cout << "2. Leer de archivo\n";
-                int accion;
-                std::cout << "Elige una accion: ";
-                std::cin >> accion;
-                std::cin.ignore();  // Limpia el buffer de entrada
-
-                if (accion == 1) {
-                    std::string nombreArchivo, texto;
-                    std::cout << "Ingresa el nombre del archivo: ";
-                    std::getline(std::cin, nombreArchivo);
-                    std::cout << "Escribe el texto que deseas guardar: ";
-                    std::getline(std::cin, texto);
-                    ArchivoTexto::escribirTexto(nombreArchivo, texto);
-                    std::cout << "Texto guardado exitosamente.\n";
-                } else if (accion == 2) {
-                    std::string nombreArchivo;
-                    std::cout << "Ingresa el nombre del archivo: ";
-                    std::getline(std::cin, nombreArchivo);
-                    std::string contenido = ArchivoTexto::leerTexto(nombreArchivo);
-                    std::cout << "Contenido del archivo:\n" << contenido << std::endl;
+            case 2:
+                // ... (Logica para Ejercicio 2)
+                break;
+            case 3: {
+                // ... (Logica para Ejercicio 3)
+                break;
+            }
+            case 4: {
+                std::cout << "Has seleccionado el Ejercicio 4.\n";
+                std::string origen, destino, archivoCodificacion;
+                int opcionCodificacion;
+                std::cout << "Ingresa la ubicacion y nombre del archivo origen: ";
+                std::cin >> origen;
+                std::cout << "Ingresa la ubicacion y nombre del archivo destino: ";
+                std::cin >> destino;
+                std::cout << "Deseas codificar (1) o decodificar (2)? ";
+                std::cin >> opcionCodificacion;
+                std::cout << "Deseas usar la codificacion por defecto (1) o por documento (2)? ";
+                std::cin >> opcionCodificacion;
+                if (opcionCodificacion == 2) {
+                    std::cout << "Ingresa la ubicacion y nombre del documento de codificacion: ";
+                    std::cin >> archivoCodificacion;
+                }
+                std::map<char, char> codificacion = Codificador::leerCodificacion(archivoCodificacion);
+                if (opcionCodificacion == 1) {
+                    Codificador::codificar(origen, destino, codificacion);
                 } else {
-                    std::cout << "Accion no valida.\n";
+                    Codificador::decodificar(origen, destino, codificacion);
                 }
                 break;
             }
-            // ... (Otras opciones del menu)
-            case 6:
+            case 5:
                 std::cout << "Saliendo del programa...\n";
                 salir = true;
                 break;
