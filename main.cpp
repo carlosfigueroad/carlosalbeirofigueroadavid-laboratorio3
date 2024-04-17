@@ -1,31 +1,68 @@
-// main.cpp
-#include "CuentaCorriente.h"  // Se incluye el archivo de cabecera de la clase CuentaCorriente
-#include <iostream>  // Se incluye la biblioteca iostream para usar cout y endl
+
+#include "punto1.h"
+#include <iostream>
 
 int main() {
-    // Se crea una instancia de la clase CuentaCorriente
-    CuentaCorriente cuenta1("Juan", "Perez", "Calle 123", "555-5555", 1000.0);
+    int opcion;
+    bool salir = false;
 
-    // Se llama al método consultarCuenta para mostrar los datos de la cuenta
-    cuenta1.consultarCuenta();
+    while (!salir) {
+        std::cout << "**************************************\n";
+        std::cout << "* Bienvenido al menu de ejercicios *\n";
+        std::cout << "**************************************\n";
+        std::cout << "Elige una opcion:\n";
+        std::cout << "1. Ejercicio 1\n";
+        // ... (Otras opciones del menu)
+        std::cout << "Ingresa tu opcion: ";
+        std::cin >> opcion;
 
-    // Se llama al método ingresarDinero para añadir dinero a la cuenta
-    cuenta1.ingresarDinero(500.0);
+        switch (opcion) {
+            case 1: {
+                CuentaCorriente cuenta;  // Crea una cuenta con los valores predeterminados
+                int accion;
+                std::cout << "Has seleccionado el Ejercicio 1.\n";
+                std::cout << "1. Retirar dinero\n";
+                std::cout << "2. Consultar cuenta\n";
+                std::cout << "3. Ingresar dinero\n";
+                std::cout << "Elige una accion: ";
+                std::cin >> accion;
 
-    // Se vuelve a llamar al método consultarCuenta para mostrar los datos actualizados de la cuenta
-    cuenta1.consultarCuenta();
-
-    // Se llama al método retirarDinero para retirar dinero de la cuenta
-    cuenta1.retirarDinero(200.0);
-
-    // Se vuelve a llamar al método consultarCuenta para mostrar los datos actualizados de la cuenta
-    cuenta1.consultarCuenta();
-
-    // Se llama al método saldoNegativo para verificar si el saldo es negativo
-    if (cuenta1.saldoNegativo()) {
-        std::cout << "La cuenta está en números rojos." << std::endl;
-    } else {
-        std::cout << "La cuenta tiene saldo positivo." << std::endl;
+                switch (accion) {
+                    case 1: {
+                        double cantidad;
+                        std::cout << "Cuanto deseas retirar? ";
+                        std::cin >> cantidad;
+                        if (cuenta.retirar(cantidad)) {
+                            std::cout << "Retiro exitoso. Saldo actual: " << cuenta.obtenerSaldo() << std::endl;
+                        } else {
+                            std::cout << "Saldo insuficiente.\n";
+                        }
+                        break;
+                    }
+                    case 2:
+                        cuenta.mostrarInformacion();
+                        break;
+                    case 3: {
+                        double cantidad;
+                        std::cout << "Cuanto deseas ingresar? ";
+                        std::cin >> cantidad;
+                        cuenta.depositar(cantidad);
+                        std::cout << "Ingreso exitoso. Saldo actual: " << cuenta.obtenerSaldo() << std::endl;
+                        break;
+                    }
+                    default:
+                        std::cout << "Accion no valida.\n";
+                }
+                break;
+            }
+            // ... (Otras opciones del menu)
+            case 6:
+                std::cout << "Saliendo del programa...\n";
+                salir = true;
+                break;
+            default:
+                std::cout << "Opcion no valida. Intenta de nuevo.\n";
+        }
     }
 
     return 0;

@@ -1,34 +1,32 @@
-#ifndef CuentaCorriente_H  // Se verifica si CUENTACORRIENTE_H no está definido para evitar la inclusión múltiple
-#define CuentaCorriente_H  // Se define CUENTACORRIENTE_H
 
-#include <string>  // Se incluye la biblioteca string para usar cadenas de texto
+#ifndef PUNTO1_H
+#define PUNTO1_H
 
-// Se declara la clase CuentaCorriente
+#include <string>
+
+// La clase CuentaCorriente representa una cuenta bancaria con operaciones basicas
 class CuentaCorriente {
-private:  // Se definen las propiedades privadas de la clase
-    std::string nombre;
-    std::string apellidos;
+private:
+    // Atributos privados para almacenar informacion de la cuenta
+    std::string nombreCliente;
+    std::string numeroCuenta;
+    double saldo;
     std::string direccion;
     std::string telefono;
-    double saldo;
 
-public:  // Se definen los métodos públicos de la clase
-    CuentaCorriente();  // Constructor por defecto
-    CuentaCorriente(std::string nom, std::string ape, std::string dir, std::string tel, double sal);  // Constructor con argumentos
-    void setNombre(std::string nom);
-    std::string getNombre() const;
-    void setApellidos(std::string ape);
-    std::string getApellidos() const;
-    void setDireccion(std::string dir);
-    std::string getDireccion() const;
-    void setTelefono(std::string tel);
-    std::string getTelefono() const;
-    void setSaldo(double sal);
-    double getSaldo() const;
-    void retirarDinero(double cantidad);
-    void ingresarDinero(double cantidad);
-    void consultarCuenta() const;
-    bool saldoNegativo() const;
+public:
+    // Constructor por defecto que inicializa los atributos con valores predeterminados
+    CuentaCorriente();
+
+    // Metodos para depositar y retirar dinero de la cuenta
+    void depositar(double cantidad);
+    bool retirar(double cantidad);
+
+    // Metodo para obtener el saldo actual de la cuenta
+    double obtenerSaldo() const;
+
+    // Metodo para mostrar informacion de la cuenta
+    void mostrarInformacion() const;
 };
 
-#endif  // Fin de la definición de CUENTACORRIENTE_H
+#endif // PUNTO1_H

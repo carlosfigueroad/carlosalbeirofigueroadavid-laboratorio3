@@ -1,59 +1,36 @@
-#include "CuentaCorriente.h"  // Se incluye el archivo de cabecera de la clase CuentaCorriente
-#include <iostream>  // Se incluye la biblioteca iostream para usar cout y endl
+#include "punto1.h"
+#include <iostream>
 
-// Se implementan los métodos de la clase CuentaCorriente
+// Implementacion del constructor por defecto
+CuentaCorriente::CuentaCorriente()
+    : nombreCliente("Carlos Figueroa"), numeroCuenta("787851455-25"), saldo(1550000), direccion("Calle 96 Carrera 95b"), telefono("3104538508") {}
 
-// Constructor por defecto
-CuentaCorriente::CuentaCorriente() : nombre(""), apellidos(""), direccion(""), telefono(""), saldo(0.0) {}
-
-// Constructor con argumentos
-CuentaCorriente::CuentaCorriente(std::string nom, std::string ape, std::string dir, std::string tel, double sal)
-    : nombre(nom), apellidos(ape), direccion(dir), telefono(tel), saldo(sal) {}
-
-// Métodos set y get para las propiedades de la clase
-void CuentaCorriente::setNombre(std::string nom) { nombre = nom; }
-std::string CuentaCorriente::getNombre() const { return nombre; }
-
-void CuentaCorriente::setApellidos(std::string ape) { apellidos = ape; }
-std::string CuentaCorriente::getApellidos() const { return apellidos; }
-
-void CuentaCorriente::setDireccion(std::string dir) { direccion = dir; }
-std::string CuentaCorriente::getDireccion() const { return direccion; }
-
-void CuentaCorriente::setTelefono(std::string tel) { telefono = tel; }
-std::string CuentaCorriente::getTelefono() const { return telefono; }
-
-void CuentaCorriente::setSaldo(double sal) { saldo = sal; }
-double CuentaCorriente::getSaldo() const { return saldo; }
-
-// Método para retirar dinero de la cuenta
-void CuentaCorriente::retirarDinero(double cantidad) {
-    if (cantidad > 0 && saldo >= cantidad) {
-        saldo -= cantidad;
-    } else {
-        std::cout << "Operación no válida." << std::endl;
-    }
-}
-
-// Método para ingresar dinero a la cuenta
-void CuentaCorriente::ingresarDinero(double cantidad) {
+// Metodo para depositar dinero en la cuenta
+void CuentaCorriente::depositar(double cantidad) {
     if (cantidad > 0) {
         saldo += cantidad;
-    } else {
-        std::cout << "Operación no válida." << std::endl;
     }
 }
 
-// Método para consultar los datos de la cuenta
-void CuentaCorriente::consultarCuenta() const {
-    std::cout << "Nombre: " << nombre << std::endl;
-    std::cout << "Apellidos: " << apellidos << std::endl;
-    std::cout << "Dirección: " << direccion << std::endl;
-    std::cout << "Teléfono: " << telefono << std::endl;
-    std::cout << "Saldo: " << saldo << std::endl;
+// Metodo para retirar dinero de la cuenta
+bool CuentaCorriente::retirar(double cantidad) {
+    if (cantidad > 0 && saldo >= cantidad) {
+        saldo -= cantidad;
+        return true;
+    }
+    return false;
 }
 
-// Método para verificar si el saldo es negativo
-bool CuentaCorriente::saldoNegativo() const {
-    return saldo < 0;
+// Metodo para obtener el saldo actual de la cuenta
+double CuentaCorriente::obtenerSaldo() const {
+    return saldo;
+}
+
+// Metodo para mostrar informacion de la cuenta
+void CuentaCorriente::mostrarInformacion() const {
+    std::cout << "Nombre del cliente: " << nombreCliente << std::endl;
+    std::cout << "Numero de cuenta: " << numeroCuenta << std::endl;
+    std::cout << "Saldo: " << saldo << std::endl;
+    std::cout << "Direccion: " << direccion << std::endl;
+    std::cout << "Telefono: " << telefono << std::endl;
 }
